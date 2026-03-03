@@ -1,0 +1,90 @@
+<div class="lh-card overflow-hidden">
+    <div class="p-4 border-bottom bg-white d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold mb-0">Learning Tasks (30 Days)</h5>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 lh-task-table">
+            <thead class="bg-light">
+                <tr>
+                    <th scope="col" class="task-name-col ps-4 font-monospace text-muted small">Task Name</th>
+                    @for (day of days; track day) {
+                    <th scope="col" class="text-center font-monospace text-muted small px-1" style="min-width: 40px;">{{
+                        day }}</th>
+                    }
+                    <th scope="col" class="text-end pe-4 font-monospace text-muted small">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (task of taskService.tasks(); track task.id) {
+                <tr>
+                    <td class="ps-4 fw-medium text-dark text-nowrap">
+                        {{ task.name }}
+                    </td>
+
+                    @for (day of days; track day) {
+                    <td class="text-center px-1">
+                        <button
+                            class="btn btn-sm p-0 d-flex align-items-center justify-content-center mx-auto rounded-circle lh-checkbox-btn"
+                            [ngClass]="task.completions[day - 1] ? 'btn-success text-white' : 'btn-light text-muted border'"
+                            [disabled]="day !== currentDay" (click)="toggleDay(task.id, day - 1)"
+                            style="width: 28px; height: 28px;">
+                            @if (task.completions[day - 1]) {
+                            <span class="material-symbols-outlined fs-6 font-weight-bold">check</span>
+                            }
+                        </button>
+                    </td>
+                    }
+
+                    <td class="text-end pe-4">
+                        <div class="d-flex align-items-center justify-content-end gap-2">
+                            <button class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1"
+                                data-bs-toggle="modal" data-bs-target="#dataModal" (click)="openDetails(task.id)">
+                                <span class="material-symbols-outlined fs-6">info</span>
+                                <span class="small fw-bold d-none d-lg-inline">Details</span>
+                            </button>
+                            <button
+                                class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
+                                data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
+                                (click)="confirmDelete(task.id)" title="Delete Task" style="width: 32px; height: 32px;">
+                                <span class="material-symbols-outlined fs-6">delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td [attr.colspan]="32" class="text-center py-5 text-muted">
+                        <div class="d-flex flex-column align-items-center">
+                            <span class="material-symbols-outlined fs-1 opacity-50 mb-2">assignment</span>
+                            <p class="mb-0">No active tasks. Add a new learning task above!</p>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-body p-4 text-center">
+                <div class="text-danger mb-3 mt-2">
+                    <span class="material-symbols-outlined fs-1">warning</span>
+                </div>
+                <h5 class="fw-bold mb-3">Delete Learning Task?</h5>
+                <p class="text-muted mb-4 px-3">Are you sure you want to permanently delete this task and its progress
+                    history? This action cannot be undone.</p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <button type="button" class="btn btn-light fw-bold px-4 rounded-3" data-bs-dismiss="modal"
+                        (click)="taskToDelete = null">Cancel</button>
+                    <button type="button" class="btn btn-danger fw-bold px-4 rounded-3" data-bs-dismiss="modal"
+                        (click)="executeDelete()">Yes, Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

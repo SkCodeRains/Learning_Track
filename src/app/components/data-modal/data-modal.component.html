@@ -1,0 +1,74 @@
+<div class="modal fade" id="dataModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content lh-modal-content">
+            <div class="modal-header border-0 p-4 pb-0">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-primary-subtle text-lh-primary rounded-3 d-flex align-items-center justify-content-center"
+                        style="width: 48px; height: 48px;">
+                        <span class="material-symbols-outlined fs-4">edit_document</span>
+                    </div>
+                    <div>
+                        <h5 class="modal-title fw-bold">Task Details</h5>
+                        <p class="text-muted small mb-0">{{ taskService.selectedTask()?.name || 'No Task Selected' }}
+                        </p>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()"></button>
+            </div>
+
+            <div class="modal-body p-4 w-100">
+                @if (taskService.selectedTask()) {
+                <form [formGroup]="detailsForm" class="d-flex flex-column gap-4">
+
+                    <!-- Hours Logged -->
+                    <div>
+                        <label class="form-label fw-bold small text-muted">Hours Logged Today</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-light-subtle">
+                                <span class="material-symbols-outlined fs-5">schedule</span>
+                            </span>
+                            <input type="number" class="form-control form-control-lg border-light-subtle bg-light fs-6"
+                                formControlName="hoursLogged" min="0" step="0.5">
+                        </div>
+                    </div>
+
+                    <!-- Study Notes -->
+                    <div>
+                        <label class="form-label fw-bold small text-muted">Study Notes</label>
+                        <textarea class="form-control border-light-subtle bg-light rounded-3 p-3 fs-6" rows="5"
+                            placeholder="Jot down your learnings, blockers, or thoughts..."
+                            formControlName="studyNotes"></textarea>
+                    </div>
+
+                    <!-- Resources/URLs -->
+                    <div>
+                        <label class="form-label fw-bold small text-muted">Resources & URLs</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-light-subtle">
+                                <span class="material-symbols-outlined fs-5">link</span>
+                            </span>
+                            <input type="text" class="form-control form-control-lg border-light-subtle bg-light fs-6"
+                                placeholder="https://..." formControlName="resourcesUrls">
+                        </div>
+                    </div>
+                </form>
+                } @else {
+                <div class="text-center py-5 text-muted">
+                    <span class="material-symbols-outlined fs-1 opacity-50 mb-3 d-block">search_off</span>
+                    <p>No task selected. Close this modal and select a task's details from the table.</p>
+                </div>
+                }
+            </div>
+
+            <div class="modal-footer border-0 p-4 pt-0 gap-2">
+                <button type="button" class="btn btn-light fw-bold px-4 py-2 rounded-3" data-bs-dismiss="modal"
+                    (click)="onClose()">Cancel</button>
+                <button type="button" class="btn lh-btn-primary px-4 d-flex align-items-center gap-2"
+                    data-bs-dismiss="modal" [disabled]="!taskService.selectedTask()" (click)="onSave()">
+                    <span class="material-symbols-outlined fs-5">save</span>
+                    Save Details
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

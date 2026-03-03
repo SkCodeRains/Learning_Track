@@ -1,0 +1,38 @@
+<!-- Using a new inline component or just a section in landing page for the heatmap -->
+<div class="lh-card p-4 overflow-hidden">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h6 class="fw-bold mb-0">Contribution Heatmap</h6>
+        <div class="d-flex align-items-center gap-3">
+            <span class="text-muted small">Last 3 Months</span>
+        </div>
+    </div>
+
+    <div class="d-flex gap-1 overflow-auto pb-2 scrollbar-hide">
+        <!-- Generate 13 columns (weeks) x 7 rows (days) -->
+        @for (week of [1,2,3,4,5,6,7,8,9,10,11,12,13]; track week) {
+        <div class="d-flex flex-column gap-1">
+            @for (day of [1,2,3,4,5,6,7]; track day) {
+            <!-- Randomly toggle active classes for demonstration -->
+            <div class="rounded-1" [ngClass]="{
+                            'bg-success opacity-25': (week * day) % 5 === 0,
+                            'bg-success opacity-50': (week * day) % 7 === 0,
+                            'bg-success opacity-75': (week * day) % 11 === 0,
+                            'bg-success': (week * day) % 13 === 0,
+                            'bg-light border': (week * day) % 5 !== 0 && (week * day) % 7 !== 0 && (week * day) % 11 !== 0 && (week * day) % 13 !== 0
+                         }" style="width: 14px; height: 14px;" title="Contributions">
+            </div>
+            }
+        </div>
+        }
+    </div>
+
+    <div class="d-flex align-items-center justify-content-end gap-2 mt-3 small text-muted">
+        <span>Less</span>
+        <div class="rounded-1 bg-light border" style="width: 12px; height: 12px;"></div>
+        <div class="rounded-1 bg-success opacity-25" style="width: 12px; height: 12px;"></div>
+        <div class="rounded-1 bg-success opacity-50" style="width: 12px; height: 12px;"></div>
+        <div class="rounded-1 bg-success opacity-75" style="width: 12px; height: 12px;"></div>
+        <div class="rounded-1 bg-success" style="width: 12px; height: 12px;"></div>
+        <span>More</span>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<!-- Calendar Component -->
+<div class="lh-card overflow-hidden">
+    <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold mb-0">Progress History</h5>
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn btn-sm btn-light rounded-2"><i class="bi bi-chevron-left"></i></button>
+            <span class="fw-bold small">October 2023</span>
+            <button class="btn btn-sm btn-light rounded-2"><i class="bi bi-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <div class="p-3">
+        <div class="row g-0 mb-1">
+            <div class="col lh-calendar-day-label">SUN</div>
+            <div class="col lh-calendar-day-label">MON</div>
+            <div class="col lh-calendar-day-label">TUE</div>
+            <div class="col lh-calendar-day-label">WED</div>
+            <div class="col lh-calendar-day-label">THU</div>
+            <div class="col lh-calendar-day-label">FRI</div>
+            <div class="col lh-calendar-day-label">SAT</div>
+        </div>
+
+        <div class="lh-calendar-grid">
+            <!-- Row 1 -->
+            <div class="lh-calendar-day bg-light opacity-50"></div>
+            <div class="lh-calendar-day bg-light opacity-50"></div>
+            <div class="lh-calendar-day">1</div>
+            <div class="lh-calendar-day completed">
+                2 <i
+                    class="bi bi-check-circle-fill text-success position-absolute top-50 start-50 translate-middle opacity-25 fs-3"></i>
+            </div>
+            <div class="lh-calendar-day completed">
+                3 <i
+                    class="bi bi-check-circle-fill text-success position-absolute top-50 start-50 translate-middle opacity-25 fs-3"></i>
+            </div>
+            <div class="lh-calendar-day completed">
+                4 <i
+                    class="bi bi-check-circle-fill text-success position-absolute top-50 start-50 translate-middle opacity-25 fs-3"></i>
+            </div>
+            <div class="lh-calendar-day">5</div>
+
+            <!-- Row 2 -->
+            <div class="lh-calendar-day">6</div>
+            <div class="lh-calendar-day completed">7</div>
+            <div class="lh-calendar-day completed">8</div>
+            <div class="lh-calendar-day completed">9</div>
+            <div class="lh-calendar-day completed">10</div>
+            <div class="lh-calendar-day completed">11</div>
+            <div class="lh-calendar-day completed">12</div>
+
+            <!-- Row 3 -->
+            <div class="lh-calendar-day completed">13</div>
+            <div class="lh-calendar-day completed">14</div>
+            <div class="lh-calendar-day completed">15</div>
+            <div class="lh-calendar-day today">
+                <span class="fw-bold text-lh-primary">16</span>
+                <i class="bi bi-pencil-square text-lh-primary position-absolute bottom-0 end-0 m-1"
+                    style="font-size: 0.6rem;"></i>
+            </div>
+            <div class="lh-calendar-day">17</div>
+            <div class="lh-calendar-day">18</div>
+            <div class="lh-calendar-day">19</div>
+
+            <!-- More rows as needed... -->
+        </div>
+    </div>
+
+    <div class="p-4 bg-light border-top">
+        <div class="d-flex flex-wrap gap-4 small">
+            <div class="d-flex align-items-center gap-2">
+                <div class="rounded bg-success-subtle border border-success-subtle" style="width: 16px; height: 16px;">
+                </div>
+                <span class="text-muted fw-medium">Completed Session</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <div class="rounded bg-white border" style="width: 16px; height: 16px;"></div>
+                <span class="text-muted fw-medium">No Entry</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <div class="rounded border-2 border-primary bg-primary-subtle" style="width: 16px; height: 16px;"></div>
+                <span class="text-muted fw-medium">Today</span>
+            </div>
+        </div>
+    </div>
+</div>

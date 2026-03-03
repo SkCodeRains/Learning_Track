@@ -1,0 +1,31 @@
+.lh-task-table {
+
+    /* Ensure the name column doesn't shrink endlessly */
+    .task-name-col {
+        min-width: 250px;
+        width: 250px;
+        position: sticky;
+        left: 0;
+        z-index: 10;
+        background-color: #f8f9fa;
+        /* match bg-light */
+        border-right: 1px solid #dee2e6;
+    }
+
+    tbody td:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 10;
+        background-color: #fff;
+        border-right: 1px solid #dee2e6;
+    }
+}
+
+.lh-checkbox-btn {
+    transition: all 0.2s ease;
+
+    &:hover:not(.btn-success) {
+        background-color: #e2e8f0;
+        border-color: #cbd5e1 !important;
+    }
+}

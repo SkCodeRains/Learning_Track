@@ -1,0 +1,74 @@
+<!-- Prompt 1: Main Dashboard -->
+<app-header></app-header>
+
+<main class="container-fluid py-4 px-md-5">
+
+    <!-- Add Task Form -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <app-goal-form></app-goal-form>
+        </div>
+    </div>
+
+    <!-- Wide Data Table -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <app-task-table></app-task-table>
+        </div>
+    </div>
+
+    <hr class="mb-5 text-muted">
+
+    <!-- Prompt 3: Analytics View -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h4 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="material-symbols-outlined text-lh-primary">analytics</span>
+                Learning Analytics
+            </h4>
+        </div>
+
+        <!-- 1. Three Stat Cards -->
+        <div class="col-12">
+            <div class="row g-4">
+                <!-- Hours Learned -->
+                <div class="col-md-4">
+                    <app-stats-card title="Hours Learned" [value]="taskService.totalHoursLearned() + 'h'"
+                        icon="schedule" colorClass="text-primary" bgClass="bg-primary-subtle"></app-stats-card>
+                </div>
+                <!-- Streak -->
+                <div class="col-md-4">
+                    <app-stats-card title="Current Streak" [value]="taskService.currentStreak()"
+                        icon="local_fire_department" colorClass="text-warning" bgClass="bg-warning-subtle"
+                        trend="+1 Day"></app-stats-card>
+                </div>
+                <!-- Tasks Completed -->
+                <div class="col-md-4">
+                    <app-stats-card title="Tasks Addressed" [value]="taskService.tasksCompletedCount()" icon="task_alt"
+                        colorClass="text-success" bgClass="bg-success-subtle"></app-stats-card>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Two placeholder charts -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-6">
+            <app-progress-card></app-progress-card>
+        </div>
+        <div class="col-md-6">
+            <app-activity-log></app-activity-log>
+        </div>
+    </div>
+
+    <!-- 3. Contribution Heatmap -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <app-heatmap></app-heatmap>
+        </div>
+    </div>
+
+</main>
+
+<!-- Prompt 2: Details Modal -->
+<app-data-modal></app-data-modal>
